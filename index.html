@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Construction Likelihood</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- LEFT PANEL -->
+        <div id="map-panel">
+
+            <!-- Panel Content -->
+            <div id="panel-content">
+
+                <!-- =========================
+                Sliders / Controls
+                ========================= -->
+                <section>
+                    <div class="inputs-header">
+                        <h3 id="municipality_name"></h3>
+                        <button id="panel-collapse"
+                                aria-label="Collapse panel"
+                                title="Hide panel">
+                            &laquo;
+                        </button>
+                    </div>
+                    <div class="input-row">
+                        <label for="dev-type-select">Development Type:</label>
+                        <select id="dev-type-select">
+                            <option value="">Loading…</option>
+                        </select>
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-header">
+                            <label for="parking_ratio">Parking Spaces/Unit:</label>
+                            <span class="slider-value" id="parking_ratio_value">1</span>
+                        </div>
+                        <input id="parking_ratio" type="range" min="0" max="3" step="0.01" value="1.0">
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-header">
+                            <label for="parking_ratio">Property Tax Rate:</label>
+                            <span class="slider-value" id="property_tax_value">1%</span>
+                        </div>
+                        <input id="property_tax" type="range" min="0" max="2" step="0.01" value="1">
+                    </div>
+                    <div class="slider-block">
+                        <div class="slider-header">
+                            <label for="parking_ratio">Impact Fees/Unit:</label>
+                            <span class="slider-value" id="impact_fee_value">10,000$</span>
+                        </div>
+                        <input id="impact_fee" type="range" min="0" max="50000" step="1000" value="10000">
+                    </div>
+                </section>
+
+                <hr>
+
+                <!-- =========================
+                Layer List
+                ========================= -->
+                <section>
+                    <div class="section-header">Layers</div>
+                    <label class="layer-title">
+                        <input type="checkbox" id="toggle-parcels" checked>
+                        Parcel Centroids
+                    </label>
+                    <div id="parcelLegend" class="legend"></div>
+                    <label class="layer-title">
+                        <input type="checkbox" id="toggle-rent">
+                        Rent/sqft 75th Percentile
+                    </label>
+                    <div id="rentLegend" class="legend" style="display: none"></div>
+                </section>
+                <hr>
+                <section>
+                    <div class="section-header">Max. Development Potential</div>
+                    <div><span id="totDUPot"></span><span> additional units</span></div>
+                </section>
+                <br />
+                <section>
+                    <div id="info"></div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- EXPAND BUTTON (ONLY VISIBLE WHEN COLLAPSED) -->
+        <button id="panel-expand" aria-label="Expand panel" title="Show panel">
+            &raquo;
+        </button>
+
+        <!-- MAP -->
+        <div id="map"></div>
+
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- App JS -->
+    <script src="main.js"></script>
+
+</body>
+</html>
