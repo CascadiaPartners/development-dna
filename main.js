@@ -324,7 +324,7 @@ loadGzippedGeoJSON("RentPSF75thPct.geojson.gz")
     })
     .catch(err => console.error(err));
 
-loadGzippedGeoJSON("ParcelCentroids.geojson.gz")
+loadGzippedGeoJSON("NashvilleTestGeoJson.geojson.gz")
     //fetch("ParcelCentroids.geojson")
     //    .then(response => {
     //        if (!response.ok) {
@@ -596,4 +596,5 @@ map.on("zoomend", () => {
 
 // Reset init UI flag
 isInitializingUI = false;
+
 
