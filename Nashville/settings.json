@@ -1,0 +1,6 @@
+{
+
+  "Municipality Name": "Nashville",
+  "Max Value Equation": "(rent_psf*RENT_COEFF)+(parking_ratio*PARKING_COEFF)+((parking_ratio^2)*PARKING_SQUARED_COEFF)+(property_tax*PROPTAX_COEFF)+(impact_fee*IMPACTFEE_COEFF)+(dev_duration*DEVSPEED_COEFF)+MAX_VAL_CONSTANT",
+  "Density Equation": "(parking_ratio*DENPARK_COEFF)+((parking_ratio^2)*DENPARK2_COEFF)+((parking_ratio^3)*DENPARK3_COEFF)+DEN_CONSTANT"
+}

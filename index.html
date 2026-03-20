@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Construction Likelihood</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="main.css" />
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- LEFT PANEL -->
+        <div id="map-panel">
+
+            <!-- Panel Content -->
+            <div id="panel-content">
+
+                <!-- =========================
+                Sliders / Controls
+                ========================= -->
+                <div class="inputs-header">
+                    <h3 id="municipality_name"></h3>
+                    <button id="panel-collapse"
+                            aria-label="Collapse panel"
+                            title="Hide panel">
+                        &laquo;
+                    </button>
+                </div>
+                <section id="slider-section">
+                    <div class="input-row">
+                        <label for="dev-type-select">Development Type:</label>
+                        <select id="dev-type-select">
+                            <option value="">Loading…</option>
+                        </select>
+                    </div>
+                </section>
+
+                <hr>
+
+                <!-- =========================
+                Layer List
+                ========================= -->
+                <section>
+                    <div class="section-header">Layers</div>
+                    <!--<label class="layer-title">
+                        <input type="checkbox" id="toggle-parcels" checked>
+                        Parcel Centroids
+                    </label>-->
+                    <div class="input-row">
+                        <label class="layer-title">
+                            <input type="checkbox" id="toggle-parcels" checked>
+                            Parcel Centroids
+                        </label>
+
+                        <!-- This span will act as your button/link -->
+                        <span id="export-geojson" class="download-link" title = "Export selected parcel centroids to GeoPackage">Export</span>
+                    </div>
+                    <div id="parcelLegend" class="legend"></div>
+                    <label class="layer-title">
+                        <input type="checkbox" id="toggle-rent">
+                        Rent/sqft 75th Percentile
+                    </label>
+                    <div id="rentLegend" class="legend" style="display: none"></div>
+                </section>
+                <hr>
+                <section>
+                    <div class="section-header">Parcel Filter</div>
+                    <div class="input-row">
+                        <label for="parcel-field-select">Field:</label>
+                        <select id="parcel-field-select">
+                            <option value="">Select field…</option>
+                        </select>
+                    </div>
+                    <div class="input-row">
+                        <label for="parcel-value-select">Value:</label>
+                        <select id="parcel-value-select" disabled>
+                            <option value="">Select value…</option>
+                        </select>
+                    </div>
+                </section>
+                <hr>
+                <section>
+                    <div class="slider-block">
+                        <div class="slider-header">
+                            <label for="likelihood_threshold">Construction Likelihood Threshold</label>
+                            <span class="slider-value" id="likelihood_threshold_value">100%</span>
+                        </div>
+                        <input type="range" id="likelihood_threshold" min="0" max="100" value="100" step="1">
+                    </div>
+                    <div class="section-header">Max. Development Potential</div>
+                    <div><span id="totDUPot"></span><span> additional units</span></div>
+                </section>
+                <br />
+                <section>
+                    <div id="info" style="visibility:hidden;">Info</div>
+                </section>
+
+            </div>
+        </div>
+
+        <!-- EXPAND BUTTON (ONLY VISIBLE WHEN COLLAPSED) -->
+        <button id="panel-expand" aria-label="Expand panel" title="Show panel">
+            &raquo;
+        </button>
+
+        <!-- MAP -->
+        <div id="map"></div>
+
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- App JS -->
+    <script src="main.js"></script>
+
+</body>
+</html>

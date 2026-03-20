@@ -1,0 +1,5 @@
+id,title,formula_name,init_val,min,max,step,unit_symbol
+1,Parking Spaces/Unit,parking_ratio,1,0,3,0.01,
+2,Property Tax Rate,property_tax,1,0,2,0.01,%
+3,Impact Fees/Unit,impact_fee,10000,0,50000,1000,$
+4,Development Duration (Months),dev_duration,12,6,24,1,
