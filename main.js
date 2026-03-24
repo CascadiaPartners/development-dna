@@ -964,7 +964,7 @@ async function loadRentLayer() {
 async function loadParcelLayer() {
     try {
         // Load gzipped geojson
-        const data = await loadGzippedGeoJSON("ParcelCentroids.geojson.gz");
+        const data = await loadGzippedGeoJSON("DevDNA_032326.geojson.gz");
 
         // Create layer
         parcelLayer = L.geoJSON(data, {
