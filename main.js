@@ -423,9 +423,9 @@ function popupContent(feature) {
 function initializeParcelFilters() {
     const fieldSelect = document.getElementById("parcel-field-select");
 
-    if (!parcelData.features.length) return;
+    if (!parcelGeoJSONData.features.length) return;
 
-    const sampleProps = parcelData.features[0].properties;
+    const sampleProps = parcelGeoJSONData.features[0].properties;
 
     Object.keys(sampleProps).forEach(field => {
         if (typeof sampleProps[field] === "string") {
@@ -787,7 +787,7 @@ async function exportParcelLayerToGeoPackage() {
     parcelLayer.eachLayer(l => {
         if (l._visible) {
             // Ensure it has properties
-            const feature = l.to();
+            const feature = l.toGeoJSON();
             feature.properties = feature.properties || {};
             visibleFeatures.push(feature);
         }
@@ -817,7 +817,7 @@ async function exportParcelLayerToGeoPackage() {
         if (y > maxY) maxY = y;
     });
 
-    // Create GeoPackage or  if error
+    // Create GeoPackage or geojson if error
     let type = "GeoPackage";
     let filename = "parcel_centroids.gpkg";
     let blob = null;
@@ -1209,5 +1209,4 @@ document.getElementById('export-geojson').addEventListener('click', async (e) =>
         setTimeout(() => el.innerText = "Export", 3000);
     }
 });
-
 
