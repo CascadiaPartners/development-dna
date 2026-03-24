@@ -423,9 +423,9 @@ function popupContent(feature) {
 function initializeParcelFilters() {
     const fieldSelect = document.getElementById("parcel-field-select");
 
-    if (!parcelGeoJSONData.features.length) return;
+    if (!parcelData.features.length) return;
 
-    const sampleProps = parcelGeoJSONData.features[0].properties;
+    const sampleProps = parcelData.features[0].properties;
 
     Object.keys(sampleProps).forEach(field => {
         if (typeof sampleProps[field] === "string") {
@@ -787,7 +787,7 @@ async function exportParcelLayerToGeoPackage() {
     parcelLayer.eachLayer(l => {
         if (l._visible) {
             // Ensure it has properties
-            const feature = l.toGeoJSON();
+            const feature = l.to();
             feature.properties = feature.properties || {};
             visibleFeatures.push(feature);
         }
@@ -817,7 +817,7 @@ async function exportParcelLayerToGeoPackage() {
         if (y > maxY) maxY = y;
     });
 
-    // Create GeoPackage or geojson if error
+    // Create GeoPackage or  if error
     let type = "GeoPackage";
     let filename = "parcel_centroids.gpkg";
     let blob = null;
@@ -964,7 +964,7 @@ async function loadRentLayer() {
 async function loadParcelLayer() {
     try {
         // Load gzipped geojson
-        const data = await loadGzippedGeoJSON("NashvilleParcels_20260223.geojson.gz");
+        const data = await loadGzippedGeoJSON("DevDNA_032326.geojson.gz");
 
         // Create layer
         parcelLayer = L.geoJSON(data, {
