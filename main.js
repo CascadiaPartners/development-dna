@@ -428,7 +428,10 @@ function initializeParcelFilters() {
     const sampleProps = parcelGeoJSONData.features[0].properties;
 
     Object.keys(sampleProps).forEach(field => {
-        if (typeof sampleProps[field] === "string") {
+        const validFeature = parcelGeoJSONData.features.find(
+            f => f.properties[field] !== null && f.properties[field] !== undefined
+        );
+        if (validFeature && typeof validFeature.properties[field] === "string") {
             const option = document.createElement("option");
             option.value = field;
             option.textContent = field;
@@ -964,7 +967,7 @@ async function loadRentLayer() {
 async function loadParcelLayer() {
     try {
         // Load gzipped geojson
-        const data = await loadGzippedGeoJSON("NashvilleParcels_20260223.geojson.gz");
+        const data = await loadGzippedGeoJSON("ParcelCentroids.geojson.gz");
 
         // Create layer
         parcelLayer = L.geoJSON(data, {
@@ -1155,9 +1158,12 @@ document.getElementById("parcel-field-select")
         const uniqueValues = new Set();
 
         parcelGeoJSONData.features.forEach(f => {
-            const v = f.properties[activeFilterField].trim();
-            if (v !== null && v !== undefined && v !== "") {
-                uniqueValues.add(v);
+            let v = f.properties[activeFilterField];
+            if (v !== null && v !== undefined) {
+                v = v.trim();
+                if (v !== "") {
+                    uniqueValues.add(v);
+                }
             }
         });
 
